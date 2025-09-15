@@ -81,13 +81,17 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 5px;
-            border-bottom: 3px solid #008000; /* 預設為綠色，將在 JS 中動態修改 */
+            border-bottom: 3px solid #008000;
         }
         .label-header .product-name {
             font-size: 2.2em;
             font-weight: bold;
             flex-grow: 1;
             text-align: center;
+            /* 強制文字不換行 */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .label-header .info-boxes {
             display: flex;
@@ -102,6 +106,8 @@
             align-items: center;
             line-height: 1.2;
             font-size: 0.8em;
+            /* 強制文字不換行 */
+            white-space: nowrap;
         }
         .label-header .calories-box span:nth-child(2) {
             font-size: 1.5em;
@@ -113,12 +119,16 @@
             font-weight: bold;
             color: #008000;
             border: 3px solid #008000;
+            /* 強制文字不換行 */
+            white-space: nowrap;
         }
         .label-dates {
             font-size: 1.1em;
             margin-top: 5px;
             display: flex;
             justify-content: space-between;
+            /* 強制文字不換行 */
+            white-space: nowrap;
         }
         .label-dates .expiry-date-text {
             border-bottom: 1px solid #000;
@@ -134,9 +144,11 @@
         .label-barcode-text {
             font-size: 1.1em;
             font-weight: bold;
-            letter-spacing: 10px;
+            letter-spacing: 1px;
             text-align: center;
             margin-top: 5px;
+            /* 強制文字不換行 */
+            white-space: nowrap;
         }
         .warning-text {
             font-size: 0.8em;
@@ -145,6 +157,7 @@
             margin-top: 5px;
         }
         
+        /* 列印樣式 */
         @media print {
             body > *:not(.label-preview-container) {
                 display: none;
@@ -157,6 +170,23 @@
             }
             .product-label {
                 border: 1px solid #000;
+            }
+        }
+
+        /* 響應式設計 - 手機版樣式 */
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+                align-items: center;
+            }
+            .container,
+            .label-preview-container {
+                flex-basis: 100%;
+                width: 90%;
+                margin-bottom: 20px;
+            }
+            .product-label {
+                width: 100%;
             }
         }
     </style>
